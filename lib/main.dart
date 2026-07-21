@@ -10,14 +10,21 @@ class FFApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FF Tournament',
+      title: '5TK Tournament',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.orange,
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.orange,
           foregroundColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.orange,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
         ),
       ),
       home: const HomePage(),
@@ -25,43 +32,49 @@ class FFApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FF STK Tournament'),
+        title: const Text('5TK TOURNAMENT'),
         centerTitle: true,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.shield, size: 100, color: Colors.orange),
-            const SizedBox(height: 20),
+            const Icon(Icons.shield, size: 120, color: Colors.orange),
+            const SizedBox(height: 30),
             const Text(
-              'Welcome to FF Tournament',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              '5TK TOURNAMENT',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.orange),
             ),
             const SizedBox(height: 10),
             const Text(
-              'Register & Join Tournaments',
+              'Join Free Fire Tournaments & Win Prizes',
               style: TextStyle(fontSize: 16, color: Colors.grey),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-              ),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Tournament Coming Soon!')),
+                  const SnackBar(content: Text('Registration Coming Soon!')),
                 );
               },
-              child: const Text('Join Tournament', style: TextStyle(fontSize: 18, color: Colors.white)),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                child: Text('JOIN NOW', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
             ),
           ],
         ),
